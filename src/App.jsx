@@ -27,7 +27,7 @@ function App() {
 
   let list = todolist.map((value, index)=>{
      return(
-      <TodoListeItem value={value} />
+      <TodoListeItem value={value} key={index} indexN={index}  todolist={todolist} setTodolist={setTodolist} />
      )
   })
  
@@ -58,8 +58,12 @@ function App() {
 
 export default App;
 
-function TodoListeItem({value}){
+function TodoListeItem({value, indexN, todolist, setTodolist}){
+  let delet = ()=>{
+    let finalData = todolist.filter((v, i)=> i !== indexN);
+     setTodolist(finalData);
+  }
   return(
-    <li> {value}   <button className="bg-cyan-500 ...">Reanme</button> <button className="bg-cyan-500 ...">Delete</button></li>
+    <li> {value}   <button className="bg-cyan-500 ...">Reanme</button> <button onClick={delet} className="bg-cyan-500 ...">Delete</button></li>
   )
 }
