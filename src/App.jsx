@@ -1,33 +1,36 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [todolist, setTodolist] = useState([])
+
+  const fomeHendler = (e)=>{
+    e.preventDefault();
+
+
+    let todoname= e.target.todo.value;
+    if(!todolist.includes(todoname)){
+      let finalTodolist = [...todolist, todoname]
+      setTodolist(finalTodolist);
+
+    }else{
+      alert("todo already add")
+    }
+
+    console.log(todoname)
+  }
+  
+ 
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <h1 className=' text-3xl font-bold'>Todo list</h1>
+ 
+    <form onSubmit={fomeHendler}>
+    <input placeholder='name ' name='todo' className='border text-red-500'></input> 
+    <button className="bg-cyan-500 ...">Add</button>
+    </form>
     </>
   )
 }
